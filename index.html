@@ -70,7 +70,6 @@
   .social-circle.whatsapp { background: linear-gradient(135deg, #25D366, #128C7E) !important; }
   .social-circle:hover { transform: translateY(-3px) scale(1.07) !important; }
 
-  /* ЕДИНСТВЕННАЯ КНОПКА — только менеджер */
   .manager-btn {
     position: fixed;
     right: 22px;
@@ -118,7 +117,6 @@
 
 <div id="root"></div>
 
-<!-- ТОЛЬКО ОДНА КНОПКА - МЕНЕДЖЕР -->
 <a class="manager-btn" href="https://wa.me/77016091766" target="_blank">
   💬
   <span>Менеджер</span>
@@ -217,17 +215,22 @@ function Akvaferma() {
     );
   }
 
+  // СТРАНИЦА ТОВАРА — БЕЗ ДУБЛИРУЮЩИХСЯ СОЦСЕТЕЙ
   if (page === 'product' && selected) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-slate-50 to-blue-50">
+        {/* Шапка с кнопкой Назад — без соцсетей (они уже есть в верхнем фиксированном меню) */}
         <div className="bg-white shadow-md px-4 py-5 sticky top-0 z-10">
-          <div className="max-w-6xl mx-auto flex items-center justify-between">
-            <button onClick={goHome} className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 px-5 py-2 rounded-full font-semibold"><ChevronLeft /> Назад</button>
-            <div className="text-center"><h1 className="text-2xl font-bold text-blue-900">{selected.name}</h1><p className="text-cyan-600 text-sm">{selected.type}</p></div>
-            <div className="flex gap-3">
-              <a class="social-circle insta" href="https://www.instagram.com/aquafarm_pvl" target="_blank">Inst</a>
-              <a class="social-circle whatsapp" href="https://chat.whatsapp.com/LhNvRIyJVfp8OyuzrfhX8b" target="_blank">Wa</a>
+          <div className="max-w-6xl mx-auto flex items-center">
+            <button onClick={goHome} className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 px-5 py-2 rounded-full font-semibold">
+              <ChevronLeft /> Назад
+            </button>
+            <div className="flex-1 text-center">
+              <h1 className="text-2xl font-bold text-blue-900">{selected.name}</h1>
+              <p className="text-cyan-600 text-sm">{selected.type}</p>
             </div>
+            {/* Пустой div для баланса, чтобы заголовок был по центру */}
+            <div className="w-[100px]"></div>
           </div>
         </div>
 
