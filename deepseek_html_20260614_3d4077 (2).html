@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Акваферма | Осетровая рыба премиум-класса</title>
+<meta name="description" content="Свежая и копченая стерлядь и осётр от производителя. Доставка по Павлодару и Казахстану." />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.development.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.development.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js"></script>
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { padding-top: 92px !important; background: #f8fafc; }
+
+  .brand-header {
+    position: fixed !important;
+    top: 14px !important;
+    left: 18px !important;
+    right: 18px !important;
+    height: 82px !important;
+    border-radius: 32px !important;
+    background: rgba(255, 255, 255, 0.92) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0 28px !important;
+    z-index: 999999 !important;
+  }
+
+  .brand-logo-text {
+    font-size: 26px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #0f4c75, #1a5fa0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.5px;
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  }
+  .brand-logo-sub {
+    font-size: 11px;
+    font-weight: 500;
+    color: #2c7da0;
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+
+  .social-circle {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 52px !important;
+    height: 52px !important;
+    border-radius: 50% !important;
+    background: white !important;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12) !important;
+    font-weight: 800 !important;
+    font-size: 16px !important;
+    text-decoration: none !important;
+    transition: all 0.25s ease !important;
+    color: white !important;
+  }
+  .social-circle.insta { background: linear-gradient(135deg, #833AB4, #C13584, #E1306C, #F77737) !important; }
+  .social-circle.whatsapp { background: linear-gradient(135deg, #25D366, #128C7E) !important; }
+  .social-circle:hover { transform: translateY(-3px) scale(1.07) !important; }
+
+  .manager-btn {
+    position: fixed;
+    right: 22px;
+    bottom: 24px;
+    z-index: 999999;
+    background: #22c55e;
+    color: white;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 60px;
+    font-weight: 700;
+    font-size: 16px;
+    box-shadow: 0 12px 25px rgba(34, 197, 94, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.2s;
+    font-family: system-ui, sans-serif;
+  }
+  .manager-btn:hover { transform: translateY(-3px); background: #16a34a; }
+
+  @media (max-width: 640px) {
+    body { padding-top: 75px !important; }
+    .brand-header { height: 68px !important; padding: 0 16px; top: 8px; left: 12px; right: 12px; }
+    .brand-logo-text { font-size: 20px; }
+    .social-circle { width: 42px !important; height: 42px !important; font-size: 12px !important; }
+    .manager-btn { padding: 10px 20px; font-size: 14px; right: 16px; bottom: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="fixed inset-0 z-[-1] opacity-5 pointer-events-none" style="background-image: radial-gradient(circle at 20% 50%, #0f4c75 0%, transparent 60%);"></div>
+
+<div class="brand-header">
+  <div class="flex flex-col">
+    <span class="brand-logo-text">АКВАФЕРМА</span>
+    <span class="brand-logo-sub">осетровая ферма</span>
+  </div>
+  <div class="flex gap-3">
+    <a class="social-circle insta" href="https://www.instagram.com/aquafarm_pvl?igsh=ZWJ5cGw3bGF5MTNr" target="_blank">Inst</a>
+    <a class="social-circle whatsapp" href="https://chat.whatsapp.com/LhNvRIyJVfp8OyuzrfhX8b" target="_blank">Wa</a>
+  </div>
+</div>
+
+<div id="root"></div>
+
+<a class="manager-btn" href="https://wa.me/77016091766" target="_blank">
+  💬
+  <span>Менеджер</span>
+</a>
+
+<script type="text/babel">
+const { useState } = React;
+
+const ChevronLeft = ({className}) => <span className={className}>←</span>;
+const MapPin = () => <span>📍</span>;
+const Truck = () => <span>🚚</span>;
+
+const products = [
+  { id:1, name:'Стерлядь / Осётр', type:'Свежие', priceText:'10 000 ₸/кг', icon:'🐟', description:'Премиум качество. Свежая осетровая рыба',
+    details:'Стерлядь и осётр из нашего хозяйства выращиваются в естественных условиях. Мясо нежное, с деликатным вкусом.',
+    benefits:['Выращено в собственном хозяйстве','Без искусственных добавок','Высокое содержание омега-3','Идеально свежее','Доставляется в день заказа'],
+    recipes:['Стерлядь на гриле с лимоном','Запечённая целиком в фольге','Стейки на сковороде','Уха из осётра'] },
+  { id:2, name:'Стерлядь / Осётр', type:'Холодного копчения', priceText:'15 500 ₸/кг', icon:'❄️', description:'Деликатес холодного копчения',
+    details:'Изготовлена по классической технологии холодного копчения. Мясо сохраняет все питательные вещества.',
+    benefits:['Длительный срок хранения','Сохранены все полезные свойства','Деликатный дымный вкус','Готовый продукт','Идеален для подарка'],
+    recipes:['Закуска к пиву','На ломтях хлеба','Салат с копченой рыбой','Икра - отдельный деликатес'] },
+  { id:3, name:'Стерлядь / Осётр', type:'Горячего копчения', priceText:'16 500 ₸/кг', icon:'🔥', description:'Ароматная рыба горячего копчения',
+    details:'Сразу после горячего копчения мясо сочное и ароматное. Корочка хрустит, внутри — нежность.',
+    benefits:['Интенсивный дымный вкус','Хрустящая корочка','Сочное мясо','Полностью готов к употреблению','Идеален для праздничного стола'],
+    recipes:['Подать с горячей картошкой','Деликатес к хорошему напитку','В салаты уже готовой','К горячему чаю'] },
+  { id:4, name:'Стерлядь', type:'Вяленая', priceText:'16 000 ₸/кг', icon:'✨', description:'Премиум вяленая стерлядь',
+    details:'Вяленая стерлядь — вершина деликатеса. Мясо плотное, с насыщенным вкусом и ароматом.',
+    benefits:['Натуральный способ сушки','Длительный срок хранения','Концентрированный вкус','Премиум качество','Идеален для коллекционеров'],
+    recipes:['Идеальная закуска к пиву','Нарезать тонко и подать на доске','В составе закусок на праздник','Дар для гурмана'] }
+];
+
+const locations = [
+  { name:'"Рыбная лавка N1"', address:'на Экобазаре', icon:'🏪', gps:'https://2gis.kz/pavlodar/firm/70000001043655028' },
+  { name:'ТД Манакбай', address:'бутик 18', icon:'🏬', gps:'https://2gis.kz/pavlodar/firm/70000001018636094' },
+  { name:'Супермаркет ВАШ МАГАЗИН', address:'Астана 16 Версаль', icon:'🛒', gps:'https://2gis.kz/pavlodar/firm/70000001018651888' },
+  { name:'Супермаркет ВАШ МАГАЗИН', address:'Назарбаева 19, Ласточка', icon:'🛒', gps:'https://2gis.kz/pavlodar/firm/70000001018652436' }
+];
+
+function Akvaferma() {
+  const [page, setPage] = useState('home');
+  const [selected, setSelected] = useState(null);
+
+  const openProduct = (p) => { setSelected(p); setPage('product'); window.scrollTo(0,0); };
+  const goHome = () => { setPage('home'); setSelected(null); window.scrollTo(0,0); };
+
+  if (page === 'home') {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-slate-50 to-blue-50">
+        <div className="relative z-10">
+          <div className="max-w-6xl mx-auto px-4 py-16">
+            <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-8 mb-12">
+              <h2 className="text-3xl font-bold text-blue-900 mb-6 text-center">О нашей компании</h2>
+              <p className="text-gray-700 text-lg text-center mb-6">ФХ Акваферма ПВ специализируется на выращивании осетровой рыбы высочайшего качества. Наши рыбы выращиваются в естественных условиях без искусственных добавок, что гарантирует превосходный вкус и полезные свойства.</p>
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="bg-blue-50 rounded-xl p-6 text-center"><div className="text-4xl mb-3">✅</div><h3 className="font-bold text-blue-900">Натуральность</h3><p className="text-gray-600">Без добавок и консервантов</p></div>
+                <div className="bg-cyan-50 rounded-xl p-6 text-center"><div className="text-4xl mb-3">🚚</div><h3 className="font-bold text-blue-900">Доставка</h3><p className="text-gray-600">Бесплатно по городу</p></div>
+                <div className="bg-blue-50 rounded-xl p-6 text-center"><div className="text-4xl mb-3">⭐</div><h3 className="font-bold text-blue-900">Премиум качество</h3><p className="text-gray-600">Лучшие сорта осетровых</p></div>
+              </div>
+            </div>
+
+            <h2 className="text-4xl font-bold text-blue-900 mb-12 text-center">Наши продукты</h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              {products.map(p => (
+                <button key={p.id} onClick={() => openProduct(p)} className="group text-left bg-white rounded-2xl shadow-lg hover:shadow-2xl transition p-6 hover:scale-105">
+                  <h3 className="text-2xl font-bold text-blue-900">{p.name}</h3>
+                  <p className="text-gray-600 mb-2">{p.type}</p>
+                  <p className="text-gray-600 mb-4">{p.description}</p>
+                  <div className="text-3xl font-bold text-cyan-600 mb-4">{p.priceText}</div>
+                  <div className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg text-center transition">Подробнее →</div>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-blue-900 text-white py-16 px-4">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-4xl font-bold mb-12 text-center">Где купить</h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                {locations.map((loc, idx) => (
+                  <div key={idx} className="bg-blue-800 rounded-xl p-6 hover:bg-blue-700 transition cursor-pointer" onClick={() => window.open(loc.gps, '_blank')}>
+                    <div className="text-4xl mb-4">{loc.icon}</div>
+                    <h3 className="text-xl font-bold mb-2">{loc.name}</h3>
+                    <p className="text-cyan-200 flex gap-2"><MapPin /> {loc.address}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-12 text-center p-6 bg-blue-800 rounded-xl">
+                <div className="flex justify-center gap-2 text-2xl font-bold"><Truck /> Бесплатная доставка</div>
+                <p className="text-cyan-200">Работаем по межгороду</p>
+              </div>
+            </div>
+          </div>
+          <div className="h-20"></div>
+        </div>
+      </div>
+    );
+  }
+
+  // СТРАНИЦА ТОВАРА — БЕЗ ДУБЛИРУЮЩИХСЯ СОЦСЕТЕЙ
+  if (page === 'product' && selected) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-slate-50 to-blue-50">
+        {/* Шапка с кнопкой Назад — без соцсетей (они уже есть в верхнем фиксированном меню) */}
+        <div className="bg-white shadow-md px-4 py-5 sticky top-0 z-10">
+          <div className="max-w-6xl mx-auto flex items-center">
+            <button onClick={goHome} className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 px-5 py-2 rounded-full font-semibold">
+              <ChevronLeft /> Назад
+            </button>
+            <div className="flex-1 text-center">
+              <h1 className="text-2xl font-bold text-blue-900">{selected.name}</h1>
+              <p className="text-cyan-600 text-sm">{selected.type}</p>
+            </div>
+            {/* Пустой div для баланса, чтобы заголовок был по центру */}
+            <div className="w-[100px]"></div>
+          </div>
+        </div>
+
+        <div className="max-w-5xl mx-auto px-4 py-12">
+          <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="bg-gradient-to-br from-slate-100 to-blue-100 rounded-xl h-80 flex items-center justify-center border-2 border-dashed border-blue-300">
+                <div className="text-center"><div className="text-8xl mb-2">{selected.icon}</div><p className="text-blue-600 font-semibold">[Фото/видео блюда]</p></div>
+              </div>
+              <div>
+                <h2 className="text-4xl font-bold text-blue-900 mb-2">{selected.name} — {selected.type}</h2>
+                <div className="text-5xl font-bold text-cyan-600 my-4">{selected.priceText}</div>
+                <p className="text-gray-600 mb-6">{selected.description}</p>
+                <div className="bg-blue-50 rounded-xl p-5 mb-6"><h3 className="font-bold text-blue-900 mb-2">Описание</h3><p>{selected.details}</p></div>
+                <button onClick={() => alert('Свяжитесь с нами в WhatsApp по кнопке Менеджер')} className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold py-4 rounded-xl text-lg transition hover:scale-[1.02]">Сделать предзаказ</button>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-2xl shadow-lg p-8 mb-8"><h2 className="text-3xl font-bold text-blue-900 mb-6">Преимущества</h2><div className="grid md:grid-cols-2 gap-3">{selected.benefits.map((b,i)=> <div key={i} className="flex gap-3 p-3 bg-blue-50 rounded-lg"><span className="text-xl">✓</span>{b}</div>)}</div></div>
+          <div className="bg-white rounded-2xl shadow-lg p-8 mb-20"><h2 className="text-3xl font-bold text-blue-900 mb-6">Идеи приготовления</h2><div className="grid md:grid-cols-2 gap-3">{selected.recipes.map((r,i)=> <div key={i} className="p-3 bg-gradient-to-r from-cyan-50 to-blue-50 border-l-4 border-cyan-500 font-medium">{r}</div>)}</div></div>
+        </div>
+      </div>
+    );
+  }
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Akvaferma />);
+</script>
+</body>
+</html>
